@@ -5,12 +5,10 @@ import com.example.feelerbackend.domain.service.BookService;
 import com.example.feelerbackend.web.api.exception.BaseRestException;
 import com.example.feelerbackend.web.api.response.ExceptionResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = {"${api.cors.origin}"})
 public class BookController {
 
     private final BookService bookService;
