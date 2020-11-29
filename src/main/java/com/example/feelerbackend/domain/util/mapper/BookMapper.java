@@ -14,6 +14,7 @@ public class BookMapper {
         book.setLanguage(dao.getLanguage());
         book.setTitle(dao.getTitle());
         book.setTitle_long(dao.getTitle_long());
+        book.setSubjects(dao.getSubjects());
         return book;
     }
 }
