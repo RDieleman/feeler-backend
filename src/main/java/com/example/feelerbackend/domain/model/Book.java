@@ -1,12 +1,14 @@
 package com.example.feelerbackend.domain.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Book {
 
     private String title;
