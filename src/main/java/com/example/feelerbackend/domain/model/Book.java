@@ -15,7 +15,5 @@ public class Book {
     private String isbn13;
     private String language;
     private String image;
-    private ArrayList<String> authors;
-    private ArrayList<String> subjects;
 
 }
