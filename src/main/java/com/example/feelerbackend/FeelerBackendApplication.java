@@ -9,5 +9,5 @@ public class FeelerBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FeelerBackendApplication.class, args);
 	}
-
+	
 }
