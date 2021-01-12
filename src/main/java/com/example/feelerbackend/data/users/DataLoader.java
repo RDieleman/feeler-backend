@@ -30,7 +30,7 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         UserDAO user = createMockUser();
-        addMockBooks(user);
+        //addMockBooks(user);
     }
 
     private UserDAO createMockUser(){
