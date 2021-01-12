@@ -1,12 +1,15 @@
-package com.example.feelerbackend.data.resource;
+package com.example.feelerbackend.data.users.source.implementations;
 
-import com.example.feelerbackend.data.dao.UserDAO;
-import org.springframework.stereotype.Service;
+import com.example.feelerbackend.data.users.dao.UserDAO;
+import com.example.feelerbackend.data.users.source.UserDataSource;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-@Service
-public class UserInfoResourceImpl implements UserInfoResource {
+@Component
+@Profile({"test", "prod", "dev"})
+public class UserDataSourceMemory extends UserDataSource {
     @Override
     public UserDAO getUserInfoById(String id) {
         //todo: Implement GoodReads with oath

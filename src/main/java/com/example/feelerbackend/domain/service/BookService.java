@@ -1,33 +1,33 @@
 package com.example.feelerbackend.domain.service;
 
-import com.example.feelerbackend.data.dao.BookDAO;
-import com.example.feelerbackend.data.resource.BookInfoResourceImpl;
+import com.example.feelerbackend.data.books.dao.BookDAO;
+import com.example.feelerbackend.data.books.source.IBookDataSource;
+import com.example.feelerbackend.data.books.source.implementations.BookDataSourceISBNdb;
 import com.example.feelerbackend.domain.model.Book;
 import com.example.feelerbackend.domain.model.Mood;
 import com.example.feelerbackend.domain.model.User;
 import com.example.feelerbackend.domain.util.mapper.BookMapper;
 import com.example.feelerbackend.web.api.exception.BookNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 @Service
 public class BookService {
-    private final BookInfoResourceImpl bookInfoResource;
+    private final IBookDataSource bookDataSource;
     private final BookMapper bookMapper;
-    private final UserService userService;
 
-    public BookService(BookInfoResourceImpl bookInfoResource, BookMapper bookMapper, UserService userService) {
-        this.bookInfoResource = bookInfoResource;
+    @Autowired
+    public BookService(IBookDataSource bookDataSource, BookMapper bookMapper) {
+        this.bookDataSource = bookDataSource;
         this.bookMapper = bookMapper;
-        this.userService = userService;
     }
 
     public Book getBookByISBN(String ISBN){
-        BookDAO dao = bookInfoResource.getBookInfoByISBN(ISBN);
+        BookDAO dao = bookDataSource.getBookInfoByISBN(ISBN);
         if(dao == null) throw new BookNotFoundException(ISBN);
 
         return bookMapper.mapBook(dao);

@@ -1,6 +1,6 @@
 package com.example.feelerbackend.domain.util.mapper;
 
-import com.example.feelerbackend.data.dao.BookDAO;
+import com.example.feelerbackend.data.books.dao.BookDAO;
 import com.example.feelerbackend.domain.model.Book;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.example.feelerbackend.data.dao;
+package com.example.feelerbackend.data.users.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

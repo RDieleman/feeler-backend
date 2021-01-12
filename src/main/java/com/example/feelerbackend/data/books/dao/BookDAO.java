@@ -1,4 +1,4 @@
-package com.example.feelerbackend.data.dao;
+package com.example.feelerbackend.data.books.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

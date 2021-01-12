@@ -1,28 +1,31 @@
-package com.example.feelerbackend.data.resource;
+package com.example.feelerbackend.data.books.source.implementations;
 
-import com.example.feelerbackend.data.dao.BookDAO;
+import com.example.feelerbackend.data.books.dao.BookDAO;
+import com.example.feelerbackend.data.books.source.BookDataSource;
 import com.example.feelerbackend.web.api.exception.BookNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
-@Service
-public class BookInfoResourceImpl implements BookInfoResource {
+@Component
+@Profile({"dev", "prod"})
+public class BookDataSourceISBNdb extends BookDataSource {
     private final RestTemplate restTemplate;
     @Value("${ISBNdb.path}")
     private String path;
     @Value("${ISBNdb.key}")
     private String key;
 
-    public BookInfoResourceImpl() {
+    public BookDataSourceISBNdb() {
         restTemplate = new RestTemplate();
     }
 
