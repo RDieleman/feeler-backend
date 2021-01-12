@@ -1,12 +1,12 @@
-package com.example.feelerbackend.domain.model.bookshelf;
+package com.example.feelerbackend.data.users.dao;
 
-import com.example.feelerbackend.domain.model.bookshelf.item.BookshelfItem;
 import com.example.feelerbackend.domain.model.bookshelf.item.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +16,12 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class BookshelfDAO {
-    private List<BookshelfItem> content = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    List<BookshelfItemDAO> content = new ArrayList<>();
 }

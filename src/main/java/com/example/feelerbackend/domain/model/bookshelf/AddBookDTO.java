@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AddBookDTO {
-    private String userId;
+    private long bookshelfId;
     private String ISBN13;
 }

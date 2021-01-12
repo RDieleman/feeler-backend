@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class RemoveBookDTO {
-    String userId;
+    long bookshelfId;
     String ISBN13;
 }

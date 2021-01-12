@@ -1,7 +1,7 @@
 package com.example.feelerbackend.data.books.implementations;
 
 import com.example.feelerbackend.data.books.BookDataSource;
-import com.example.feelerbackend.domain.model.book.BookDAO;
+import com.example.feelerbackend.data.books.dao.BookDAO;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 

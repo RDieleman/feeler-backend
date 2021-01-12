@@ -1,69 +1,90 @@
 package com.example.feelerbackend.domain.service;
 
-import com.example.feelerbackend.data.users.IUserDataSource;
-import com.example.feelerbackend.domain.model.book.Book;
+import com.example.feelerbackend.data.users.dao.BookshelfDAO;
+import com.example.feelerbackend.data.users.dao.BookshelfItemDAO;
+import com.example.feelerbackend.data.users.repositories.IBookshelfRepository;
 import com.example.feelerbackend.domain.model.bookshelf.*;
-import com.example.feelerbackend.domain.model.user.UserDAO;
-import com.example.feelerbackend.domain.util.mapper.IBookMapper;
+import com.example.feelerbackend.domain.model.bookshelf.item.Status;
 import com.example.feelerbackend.domain.util.mapper.IBookshelfMapper;
+import com.example.feelerbackend.web.api.exception.implementations.BookNotFoundException;
+import com.example.feelerbackend.web.api.exception.implementations.BookshelfNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BookshelfService {
-    private final IUserDataSource userDataSource;
-    private final UserService userService;
+    private final IBookshelfRepository bookshelfDataSource;
     private final IBookshelfMapper bookshelfMapper;
-    private final IBookMapper bookMapper;
 
-    public BookshelfService(IUserDataSource userDataSource, UserService userService, IBookshelfMapper bookshelfMapper, IBookMapper bookMapper) {
-        this.userDataSource = userDataSource;
-        this.userService = userService;
+    @Autowired
+    public BookshelfService(IBookshelfRepository bookshelfDataSource, IBookshelfMapper bookshelfMapper) {
+        this.bookshelfDataSource = bookshelfDataSource;
         this.bookshelfMapper = bookshelfMapper;
-        this.bookMapper = bookMapper;
     }
 
-    public BookshelfDTO getBookshelf(GetBookshelfDTO dto){
-        BookshelfDAO dao = userDataSource.getBookshelf(
-                new GetBookshelfDAO(
-                        dto.getUserId()
-                )
-        );
-        Bookshelf model = bookshelfMapper.toModel(dao);
-        return bookshelfMapper.toDTO(model);
-    }
+    public BookshelfDTO getBookshelf(GetBookshelfDTO dto) {
 
-    public BookshelfDTO addBook(AddBookDTO dto){
-        BookshelfDAO dao = userDataSource.addBook(
-                new AddBookDAO(
-                        dto.getUserId(),
-                        dto.getISBN13()
-                )
-        );
+        BookshelfDAO dao = bookshelfDataSource.findById(dto.getBookshelfId())
+                .orElse(null);
+
+        if(dao == null) throw new BookshelfNotFoundException(dto.getBookshelfId());
 
         Bookshelf model = bookshelfMapper.toModel(dao);
         return bookshelfMapper.toDTO(model);
     }
 
-    public BookshelfDTO updateBook(UpdateBookDTO dto){
-        BookshelfDAO dao = userDataSource.updateBook(
-                new UpdateBookDAO(
-                        dto.getUserId(),
-                        dto.getISBN13(),
-                        dto.getStatus()
-                )
-        );
+    public BookshelfDTO addBook(AddBookDTO dto) {
+        BookshelfDAO dao = bookshelfDataSource.findById(dto.getBookshelfId())
+                .orElse(null);
+
+        if(dao == null) throw new BookshelfNotFoundException(dto.getBookshelfId());
+
+        BookshelfItemDAO item = new BookshelfItemDAO();
+        item.setISBN13(dto.getISBN13());
+        item.setStatus(Status.UNREAD);
+
+        dao.getContent().add(item);
+
+        dao = bookshelfDataSource.save(dao);
+
+        Bookshelf model = bookshelfMapper.toModel(dao);
+
+        return bookshelfMapper.toDTO(model);
+    }
+
+    public BookshelfDTO updateBook(UpdateBookDTO dto) {
+        BookshelfDAO dao = bookshelfDataSource.findById(dto.getBookshelfId())
+                .orElse(null);
+
+        if(dao == null) throw new BookshelfNotFoundException(dto.getBookshelfId());
+
+        BookshelfItemDAO item = dao.getContent().stream()
+                .filter(c -> c.getISBN13().equals(dto.getISBN13()))
+                .findAny().get();
+
+        item.setStatus(dto.getStatus());
+
+        dao = bookshelfDataSource.save(dao);
 
         Bookshelf model = bookshelfMapper.toModel(dao);
         return bookshelfMapper.toDTO(model);
     }
 
-    public BookshelfDTO removeBook(RemoveBookDTO dto){
-        BookshelfDAO dao = userDataSource.removeBook(
-                new RemoveBookDAO(
-                        dto.getUserId(),
-                        dto.getISBN13()
-                )
-        );
+    public BookshelfDTO removeBook(RemoveBookDTO dto) {
+        BookshelfDAO dao = bookshelfDataSource.findById(dto.getBookshelfId())
+                .orElse(null);
+
+        if(dao == null) throw new BookshelfNotFoundException(dto.getBookshelfId());
+
+        BookshelfItemDAO item = dao.getContent().stream()
+                .filter(c -> c.getISBN13().equals(dto.getISBN13()))
+                .findAny().orElse(null);
+
+        if(item == null) throw new BookNotFoundException(dto.getISBN13());
+
+        dao.getContent().remove(item);
+
+        dao = bookshelfDataSource.save(dao);
 
         Bookshelf model = bookshelfMapper.toModel(dao);
         return bookshelfMapper.toDTO(model);

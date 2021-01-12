@@ -34,7 +34,7 @@ public class UserController {
             code=200, message="The info about the requested user has been returned."
     )
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable String id){
+    public ResponseEntity<UserDTO> getUserById(@PathVariable long id){
         UserDTO resource = userService.getUserById(id);
         return ResponseEntity.ok(resource);
     }

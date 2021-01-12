@@ -13,4 +13,5 @@ import lombok.Setter;
 public class UserDTO {
     private String id;
     private String name;
+    private BookshelfDTO bookshelf;
 }

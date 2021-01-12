@@ -1,7 +1,7 @@
 package com.example.feelerbackend.domain.util.mapper;
 
+import com.example.feelerbackend.data.users.dao.BookshelfDAO;
 import com.example.feelerbackend.domain.model.bookshelf.Bookshelf;
-import com.example.feelerbackend.domain.model.bookshelf.BookshelfDAO;
 import com.example.feelerbackend.domain.model.bookshelf.BookshelfDTO;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;

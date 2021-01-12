@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookshelfItem {
+    long id;
     String ISBN13;
     Status status;
 }

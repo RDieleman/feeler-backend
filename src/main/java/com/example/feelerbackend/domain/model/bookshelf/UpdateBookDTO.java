@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UpdateBookDTO {
-    String userId;
+    long bookshelfId;
     String ISBN13;
     Status status;
 }

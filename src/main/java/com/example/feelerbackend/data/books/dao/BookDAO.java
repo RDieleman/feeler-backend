@@ -1,4 +1,4 @@
-package com.example.feelerbackend.domain.model.book;
+package com.example.feelerbackend.data.books.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

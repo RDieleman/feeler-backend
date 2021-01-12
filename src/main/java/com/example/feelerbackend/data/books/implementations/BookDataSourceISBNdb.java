@@ -1,6 +1,6 @@
 package com.example.feelerbackend.data.books.implementations;
 
-import com.example.feelerbackend.domain.model.book.BookDAO;
+import com.example.feelerbackend.data.books.dao.BookDAO;
 import com.example.feelerbackend.data.books.BookDataSource;
 import com.example.feelerbackend.web.api.exception.implementations.BookNotFoundException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,7 +16,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

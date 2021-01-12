@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    private String id;
+    private long id;
     private String name;
     private Bookshelf bookshelf;
 }

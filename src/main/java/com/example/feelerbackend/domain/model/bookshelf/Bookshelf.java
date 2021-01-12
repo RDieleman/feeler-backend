@@ -15,5 +15,6 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bookshelf {
+    long id;
     List<BookshelfItem> content;
 }

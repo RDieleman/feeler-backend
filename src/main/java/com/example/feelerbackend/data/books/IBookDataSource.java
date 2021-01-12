@@ -1,6 +1,6 @@
 package com.example.feelerbackend.data.books;
 
-import com.example.feelerbackend.domain.model.book.BookDAO;
+import com.example.feelerbackend.data.books.dao.BookDAO;
 
 import java.util.List;
 
