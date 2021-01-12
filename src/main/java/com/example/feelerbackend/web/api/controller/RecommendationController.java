@@ -1,8 +1,8 @@
 package com.example.feelerbackend.web.api.controller;
 
-import com.example.feelerbackend.domain.model.Book;
+import com.example.feelerbackend.domain.model.book.Book;
 import com.example.feelerbackend.domain.model.Mood;
-import com.example.feelerbackend.domain.model.User;
+import com.example.feelerbackend.domain.model.user.User;
 import com.example.feelerbackend.domain.service.BookService;
 import com.example.feelerbackend.domain.service.MoodService;
 import com.example.feelerbackend.domain.service.UserService;

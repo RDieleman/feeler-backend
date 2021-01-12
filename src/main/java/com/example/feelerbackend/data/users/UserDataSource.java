@@ -1,4 +1,4 @@
-package com.example.feelerbackend.data.users.source;
+package com.example.feelerbackend.data.users;
 
 import com.example.feelerbackend.data.DataSource;
 

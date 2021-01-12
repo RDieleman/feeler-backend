@@ -1,7 +1,7 @@
-package com.example.feelerbackend.data.users.source.implementations;
+package com.example.feelerbackend.data.users.implementations;
 
-import com.example.feelerbackend.data.users.dao.UserDAO;
-import com.example.feelerbackend.data.users.source.UserDataSource;
+import com.example.feelerbackend.data.users.UserDataSource;
+import com.example.feelerbackend.domain.model.user.UserDAO;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 

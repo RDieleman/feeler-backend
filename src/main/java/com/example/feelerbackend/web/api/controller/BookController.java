@@ -1,6 +1,6 @@
 package com.example.feelerbackend.web.api.controller;
 
-import com.example.feelerbackend.domain.model.Book;
+import com.example.feelerbackend.domain.model.book.Book;
 import com.example.feelerbackend.domain.service.BookService;
 import com.example.feelerbackend.web.api.exception.BaseRestException;
 import com.example.feelerbackend.web.api.response.ExceptionResponse;

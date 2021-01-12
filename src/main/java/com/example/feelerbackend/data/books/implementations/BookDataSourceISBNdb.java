@@ -1,7 +1,7 @@
-package com.example.feelerbackend.data.books.source.implementations;
+package com.example.feelerbackend.data.books.implementations;
 
-import com.example.feelerbackend.data.books.dao.BookDAO;
-import com.example.feelerbackend.data.books.source.BookDataSource;
+import com.example.feelerbackend.domain.model.book.BookDAO;
+import com.example.feelerbackend.data.books.BookDataSource;
 import com.example.feelerbackend.web.api.exception.BookNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;

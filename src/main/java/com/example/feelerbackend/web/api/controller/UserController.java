@@ -1,10 +1,9 @@
 package com.example.feelerbackend.web.api.controller;
 
-import com.example.feelerbackend.domain.model.User;
+import com.example.feelerbackend.domain.model.user.User;
 import com.example.feelerbackend.domain.service.UserService;
 import com.example.feelerbackend.web.api.exception.BaseRestException;
 import com.example.feelerbackend.web.api.response.ExceptionResponse;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

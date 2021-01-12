@@ -1,15 +1,15 @@
-package com.example.feelerbackend.domain.model;
+package com.example.feelerbackend.domain.model.user;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+@AllArgsConstructor
+public class UserDAO {
     private String id;
     private String name;
     private ArrayList<String> want_to_read_list = new ArrayList<>();

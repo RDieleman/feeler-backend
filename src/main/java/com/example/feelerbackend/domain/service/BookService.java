@@ -1,12 +1,11 @@
 package com.example.feelerbackend.domain.service;
 
-import com.example.feelerbackend.data.books.dao.BookDAO;
-import com.example.feelerbackend.data.books.source.IBookDataSource;
-import com.example.feelerbackend.data.books.source.implementations.BookDataSourceISBNdb;
-import com.example.feelerbackend.domain.model.Book;
+import com.example.feelerbackend.domain.model.book.BookDAO;
+import com.example.feelerbackend.data.books.IBookDataSource;
+import com.example.feelerbackend.domain.model.book.Book;
 import com.example.feelerbackend.domain.model.Mood;
-import com.example.feelerbackend.domain.model.User;
-import com.example.feelerbackend.domain.util.mapper.BookMapper;
+import com.example.feelerbackend.domain.model.user.User;
+import com.example.feelerbackend.domain.util.mapper.IBookMapper;
 import com.example.feelerbackend.web.api.exception.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +17,10 @@ import java.util.List;
 @Service
 public class BookService {
     private final IBookDataSource bookDataSource;
-    private final BookMapper bookMapper;
+    private final IBookMapper bookMapper;
 
     @Autowired
-    public BookService(IBookDataSource bookDataSource, BookMapper bookMapper) {
+    public BookService(IBookDataSource bookDataSource, IBookMapper bookMapper) {
         this.bookDataSource = bookDataSource;
         this.bookMapper = bookMapper;
     }
@@ -30,7 +29,7 @@ public class BookService {
         BookDAO dao = bookDataSource.getBookInfoByISBN(ISBN);
         if(dao == null) throw new BookNotFoundException(ISBN);
 
-        return bookMapper.mapBook(dao);
+        return bookMapper.toModel(dao);
     }
 
     public ArrayList<Book> getRecommendationsByMood(int amount, Mood mood, User user){
