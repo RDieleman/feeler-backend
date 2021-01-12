@@ -12,11 +12,8 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookDTO {
+    private String ISBN;
     private String title;
-    private String title_long;
-    private String isbn;
-    private String isbn13;
-    private String language;
-    private String image;
-    private ArrayList<String> subjects = new ArrayList<>();
+    private String overview;
+    private String imageUrl;
 }

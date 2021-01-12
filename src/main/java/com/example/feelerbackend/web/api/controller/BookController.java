@@ -1,14 +1,16 @@
 package com.example.feelerbackend.web.api.controller;
 
 import com.example.feelerbackend.domain.model.book.Book;
+import com.example.feelerbackend.domain.model.book.BookDTO;
 import com.example.feelerbackend.domain.service.BookService;
 import com.example.feelerbackend.web.api.exception.BaseRestException;
-import com.example.feelerbackend.web.api.response.ExceptionResponse;
+import com.example.feelerbackend.web.api.exception.ExceptionResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = {"${api.cors.origin}"})
+@RequestMapping("book")
 public class BookController {
 
     private final BookService bookService;
@@ -17,9 +19,9 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping(value= "/book/{ISBN}")
-    public ResponseEntity<Book> getBookByISBN(@PathVariable String ISBN){
-        Book resource = bookService.getBookByISBN(ISBN);
+    @GetMapping(value= "/{ISBN}")
+    public ResponseEntity<BookDTO> getBookByISBN(@PathVariable String ISBN){
+        BookDTO resource = bookService.getBookByISBN(ISBN);
 
         return ResponseEntity.ok(resource);
     }

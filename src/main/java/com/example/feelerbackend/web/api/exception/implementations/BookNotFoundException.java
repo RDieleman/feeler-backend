@@ -1,5 +1,6 @@
-package com.example.feelerbackend.web.api.exception;
+package com.example.feelerbackend.web.api.exception.implementations;
 
+import com.example.feelerbackend.web.api.exception.BaseRestException;
 import org.springframework.http.HttpStatus;
 
 public class BookNotFoundException extends BaseRestException {

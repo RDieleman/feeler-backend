@@ -1,6 +1,7 @@
 package com.example.feelerbackend.domain.model.book;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -12,11 +13,15 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookDAO {
+    @JsonProperty("isbn13")
+    private String ISBN;
+
+    @JsonProperty("title_long")
     private String title;
-    private String title_long;
-    private String isbn;
-    private String isbn13;
-    private String language;
-    private String image;
-    private ArrayList<String> subjects = new ArrayList<>();
+
+    @JsonProperty("overview")
+    private String overview;
+
+    @JsonProperty("image")
+    private String imageUrl;
 }

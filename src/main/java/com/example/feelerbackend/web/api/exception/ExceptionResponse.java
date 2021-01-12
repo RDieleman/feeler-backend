@@ -1,4 +1,4 @@
-package com.example.feelerbackend.web.api.response;
+package com.example.feelerbackend.web.api.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

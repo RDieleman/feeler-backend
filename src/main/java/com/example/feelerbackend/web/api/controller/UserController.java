@@ -1,9 +1,10 @@
 package com.example.feelerbackend.web.api.controller;
 
 import com.example.feelerbackend.domain.model.user.User;
+import com.example.feelerbackend.domain.model.user.UserDTO;
 import com.example.feelerbackend.domain.service.UserService;
 import com.example.feelerbackend.web.api.exception.BaseRestException;
-import com.example.feelerbackend.web.api.response.ExceptionResponse;
+import com.example.feelerbackend.web.api.exception.ExceptionResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable String id){
-        User resource = userService.getUserById(id);
+    public ResponseEntity<UserDTO> getUserById(@PathVariable String id){
+        UserDTO resource = userService.getUserById(id);
         return ResponseEntity.ok(resource);
     }
 
