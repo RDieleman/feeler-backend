@@ -1,11 +1,13 @@
 package com.example.feelerbackend.domain.model.bookshelf;
 
-import com.example.feelerbackend.domain.model.book.Book;
+import com.example.feelerbackend.domain.model.bookshelf.item.BookshelfItem;
+import com.example.feelerbackend.domain.model.bookshelf.item.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -13,5 +15,5 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bookshelf {
-    Map<Book, Status> content;
+    List<BookshelfItem> content;
 }

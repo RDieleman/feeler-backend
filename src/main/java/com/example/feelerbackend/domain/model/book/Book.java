@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
-    private String ISBN;
+    private String ISBN13;
     private String title;
     private String overview;
     private String imageUrl;

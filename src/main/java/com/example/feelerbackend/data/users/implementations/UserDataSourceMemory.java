@@ -2,12 +2,13 @@ package com.example.feelerbackend.data.users.implementations;
 
 import com.example.feelerbackend.data.users.UserDataSource;
 import com.example.feelerbackend.domain.model.bookshelf.*;
+import com.example.feelerbackend.domain.model.bookshelf.item.BookshelfItem;
+import com.example.feelerbackend.domain.model.bookshelf.item.Status;
 import com.example.feelerbackend.domain.model.user.UserDAO;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -15,7 +16,7 @@ import java.util.List;
 public class UserDataSourceMemory extends UserDataSource {
     List<UserDAO> users = new ArrayList<>();
 
-    public UserDataSourceMemory(){
+    public UserDataSourceMemory() {
         storeNewUser("1", "ruben");
     }
 
@@ -42,31 +43,56 @@ public class UserDataSourceMemory extends UserDataSource {
     }
 
     @Override
-    public UserDAO addBook(AddBookDAO dao) {
+    public BookshelfDAO addBook(AddBookDAO dao) {
         UserDAO user = getUserById(dao.getUserId());
-        if(user == null) return null;
+        if (user == null) return null;
 
-        user.getBookshelf().getContent().put(dao.getBook(), Status.UNREAD);
-        return user;
+        boolean exists = user.getBookshelf().getContent().stream().anyMatch(c -> c.getISBN13().equals(dao.getISBN13()));
+        if (exists) return null; //todo: add exceptions
+
+        user.getBookshelf().getContent().add(
+                new BookshelfItem(
+                        dao.getISBN13(),
+                        Status.UNREAD
+                )
+        );
+
+        return user.getBookshelf();
     }
 
     @Override
-    public UserDAO updateBook(UpdateBookDAO dao) {
+    public BookshelfDAO updateBook(UpdateBookDAO dao) {
         UserDAO user = getUserById(dao.getUserId());
-        if(user == null) return null;
+        if (user == null) return null;
 
-        user.getBookshelf().getContent().put(dao.getBook(), dao.getStatus());
-        return user;
+        user.getBookshelf().getContent().stream()
+                .filter(c -> c.getISBN13().equals(dao.getISBN13()))
+                .findFirst().get()
+                .setStatus(dao.getStatus());
+
+        return user.getBookshelf();
     }
 
     @Override
-    public UserDAO removeBook(RemoveBookDAO dao) {
+    public BookshelfDAO removeBook(RemoveBookDAO dao) {
         UserDAO user = getUserById(dao.getUserId());
-        if(user == null) return null;
+        if (user == null) return null;
 
-        user.getBookshelf().getContent().remove(dao.getBook());
+        BookshelfItem item = user.getBookshelf().getContent().stream()
+                .filter(c -> c.getISBN13().equals(dao.getISBN13()))
+                .findAny().get();
 
-        return user;
+        user.getBookshelf().getContent().remove(item);
+
+        return user.getBookshelf();
+    }
+
+    @Override
+    public BookshelfDAO getBookshelf(GetBookshelfDAO dao) {
+        UserDAO user = getUserById(dao.getUserId());
+        if (user == null) return null;
+
+        return user.getBookshelf();
     }
 
 

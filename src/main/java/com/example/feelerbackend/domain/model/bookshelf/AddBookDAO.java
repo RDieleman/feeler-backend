@@ -12,5 +12,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AddBookDAO {
     String userId;
-    BookDAO book;
+    String ISBN13;
 }

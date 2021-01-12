@@ -22,43 +22,50 @@ public class BookshelfService {
         this.bookMapper = bookMapper;
     }
 
+    public BookshelfDTO getBookshelf(GetBookshelfDTO dto){
+        BookshelfDAO dao = userDataSource.getBookshelf(
+                new GetBookshelfDAO(
+                        dto.getUserId()
+                )
+        );
+        Bookshelf model = bookshelfMapper.toModel(dao);
+        return bookshelfMapper.toDTO(model);
+    }
+
     public BookshelfDTO addBook(AddBookDTO dto){
-        Book bookModel = bookMapper.toModel(dto.getBook());
-        UserDAO dao = userDataSource.addBook(
+        BookshelfDAO dao = userDataSource.addBook(
                 new AddBookDAO(
                         dto.getUserId(),
-                        bookMapper.toDAO(bookModel)
+                        dto.getISBN13()
                 )
         );
 
-        Bookshelf model = bookshelfMapper.toModel(dao.getBookshelf());
+        Bookshelf model = bookshelfMapper.toModel(dao);
         return bookshelfMapper.toDTO(model);
     }
 
     public BookshelfDTO updateBook(UpdateBookDTO dto){
-        Book bookModel = bookMapper.toModel(dto.getBook());
-        UserDAO dao = userDataSource.updateBook(
+        BookshelfDAO dao = userDataSource.updateBook(
                 new UpdateBookDAO(
                         dto.getUserId(),
-                        bookMapper.toDAO(bookModel),
+                        dto.getISBN13(),
                         dto.getStatus()
                 )
         );
 
-        Bookshelf model = bookshelfMapper.toModel(dao.getBookshelf());
+        Bookshelf model = bookshelfMapper.toModel(dao);
         return bookshelfMapper.toDTO(model);
     }
 
     public BookshelfDTO removeBook(RemoveBookDTO dto){
-        Book bookModel = bookMapper.toModel(dto.getBook());
-        UserDAO dao = userDataSource.removeBook(
+        BookshelfDAO dao = userDataSource.removeBook(
                 new RemoveBookDAO(
                         dto.getUserId(),
-                        bookMapper.toDAO(bookModel)
+                        dto.getISBN13()
                 )
         );
 
-        Bookshelf model = bookshelfMapper.toModel(dao.getBookshelf());
+        Bookshelf model = bookshelfMapper.toModel(dao);
         return bookshelfMapper.toDTO(model);
     }
 }

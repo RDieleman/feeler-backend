@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookDTO {
-    private String ISBN;
+    private String ISBN13;
     private String title;
     private String overview;
     private String imageUrl;

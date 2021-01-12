@@ -10,5 +10,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddBookDTO {
     private String userId;
-    private BookDTO book;
+    private String ISBN13;
 }

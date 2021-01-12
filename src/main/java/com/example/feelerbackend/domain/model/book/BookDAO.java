@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookDAO {
     @JsonProperty("isbn13")
-    private String ISBN;
+    private String ISBN13;
 
     @JsonProperty("title_long")
     private String title;

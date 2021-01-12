@@ -1,6 +1,7 @@
 package com.example.feelerbackend.domain.model.bookshelf;
 
 import com.example.feelerbackend.domain.model.book.BookDAO;
+import com.example.feelerbackend.domain.model.bookshelf.item.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UpdateBookDAO {
     String userId;
-    BookDAO book;
+    String ISBN13;
     Status status;
 }

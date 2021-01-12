@@ -1,9 +1,6 @@
 package com.example.feelerbackend.web.api.controller;
 
-import com.example.feelerbackend.domain.model.bookshelf.AddBookDTO;
-import com.example.feelerbackend.domain.model.bookshelf.BookshelfDTO;
-import com.example.feelerbackend.domain.model.bookshelf.RemoveBookDTO;
-import com.example.feelerbackend.domain.model.bookshelf.UpdateBookDTO;
+import com.example.feelerbackend.domain.model.bookshelf.*;
 import com.example.feelerbackend.domain.service.BookshelfService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +19,23 @@ public class BookshelfController {
     @Autowired
     public BookshelfController(BookshelfService bookshelfService) {
         this.bookshelfService = bookshelfService;
+    }
+
+    /**
+     * Get a user's bookshelf
+     * @param dto   Object containing the users info needed to retrieve the bookshelf
+     * @return  The user's bookshelf
+     */
+    @ApiOperation(
+            value = "Get a user's bookshelf"
+    )
+    @ApiResponse(
+            code=200, message="The bookshelf has been returned."
+    )
+    @GetMapping
+    public ResponseEntity<BookshelfDTO> getBookshelf(@RequestBody GetBookshelfDTO dto){
+        BookshelfDTO resource = bookshelfService.getBookshelf(dto);
+        return ResponseEntity.ok(resource);
     }
 
     /**
