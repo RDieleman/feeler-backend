@@ -1,12 +1,11 @@
 package com.example.feelerbackend.domain.model.user;
 
-import com.example.feelerbackend.domain.model.book.Book;
 import com.example.feelerbackend.domain.model.book.BookDAO;
+import com.example.feelerbackend.domain.model.bookshelf.BookshelfDAO;
+import com.example.feelerbackend.domain.model.bookshelf.Status;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Data
@@ -17,5 +16,5 @@ import java.util.Map;
 public class UserDAO {
     private String id;
     private String name;
-    private Map<BookDAO, BookStatus> bookInfo = new HashMap<>();
+    private BookshelfDAO bookshelf;
 }

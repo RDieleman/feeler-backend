@@ -1,6 +1,7 @@
 package com.example.feelerbackend.data.users.implementations;
 
 import com.example.feelerbackend.data.users.UserDataSource;
+import com.example.feelerbackend.domain.model.bookshelf.*;
 import com.example.feelerbackend.domain.model.user.UserDAO;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ public class UserDataSourceMemory extends UserDataSource {
         UserDAO user = new UserDAO(
                 id,
                 name,
-                new HashMap<>()
+                new BookshelfDAO()
         );
 
         users.add(user);
@@ -39,4 +40,34 @@ public class UserDataSourceMemory extends UserDataSource {
                 .findAny()
                 .orElse(null);
     }
+
+    @Override
+    public UserDAO addBook(AddBookDAO dao) {
+        UserDAO user = getUserById(dao.getUserId());
+        if(user == null) return null;
+
+        user.getBookshelf().getContent().put(dao.getBook(), Status.UNREAD);
+        return user;
+    }
+
+    @Override
+    public UserDAO updateBook(UpdateBookDAO dao) {
+        UserDAO user = getUserById(dao.getUserId());
+        if(user == null) return null;
+
+        user.getBookshelf().getContent().put(dao.getBook(), dao.getStatus());
+        return user;
+    }
+
+    @Override
+    public UserDAO removeBook(RemoveBookDAO dao) {
+        UserDAO user = getUserById(dao.getUserId());
+        if(user == null) return null;
+
+        user.getBookshelf().getContent().remove(dao.getBook());
+
+        return user;
+    }
+
+
 }
