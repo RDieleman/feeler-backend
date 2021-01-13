@@ -14,6 +14,17 @@ public class MoodService {
     }
 
     public String getSubjectFromMood(Mood mood){
-        return "horror"; //todo: implement mood to subject convert logic
+        switch (mood){
+            case angry:
+                return "biography biographies autobiography essay true-crime";
+            case happy:
+                return "self-help cookbook food cooking short-story romance";
+            case scared:
+                return "true-crime horror suspense thriller";
+            case surprised:
+                return "thriller detective";
+            default:
+                return " ";
+        }
     }
 }
