@@ -33,7 +33,7 @@ public class ExploreController {
     @ApiResponse(
             code=200, message="The requested page of books has been returned."
     )
-    @GetMapping
+    @PostMapping
     public ResponseEntity<List<BookDTO>> getExploreResult(@RequestBody GetExploreResultDTO dto){
         List<BookDTO> resource = bookService.getExploreResult(dto);
         return ResponseEntity.ok(resource);

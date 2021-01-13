@@ -32,7 +32,7 @@ public class BookshelfController {
     @ApiResponse(
             code=200, message="The bookshelf has been returned."
     )
-    @GetMapping
+    @PostMapping
     public ResponseEntity<BookshelfDTO> getBookshelf(@RequestBody GetBookshelfDTO dto){
         BookshelfDTO resource = bookshelfService.getBookshelf(dto);
         return ResponseEntity.ok(resource);
