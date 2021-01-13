@@ -1,5 +1,6 @@
 package com.example.feelerbackend.web.api.controller;
 
+import com.example.feelerbackend.domain.model.Mood;
 import com.example.feelerbackend.domain.model.book.BookDTO;
 import com.example.feelerbackend.domain.model.book.GetExploreResultDTO;
 import com.example.feelerbackend.domain.service.BookService;
@@ -23,9 +24,10 @@ public class ExploreController {
     }
 
     /**
-     * Get a list of books for the user to explore by providing a mood
-     * @param dto Object containing info about the mood and the specific page that needs to be returned
-     * @return  The requested page of books
+     * Get a page of books with a specific mood
+     * @param mood the mood used to search for book genres
+     * @param page the page of the result
+     * @return A list of books
      */
     @ApiOperation(
             value = "Request a list of books by mood for the user to explore"
@@ -33,8 +35,12 @@ public class ExploreController {
     @ApiResponse(
             code=200, message="The requested page of books has been returned."
     )
-    @PostMapping
-    public ResponseEntity<List<BookDTO>> getExploreResult(@RequestBody GetExploreResultDTO dto){
+    @GetMapping(value = "/{mood}/{page}")
+    public ResponseEntity<List<BookDTO>> getExploreResult(@PathVariable Mood mood, @PathVariable int page){
+        GetExploreResultDTO dto = new GetExploreResultDTO();
+        dto.setMood(mood);
+        dto.setPage(page);
+
         List<BookDTO> resource = bookService.getExploreResult(dto);
         return ResponseEntity.ok(resource);
     }
