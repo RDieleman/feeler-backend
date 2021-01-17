@@ -9,6 +9,7 @@ pipeline {
                 sh '''
                     chmod +x ./jenkins/build/mvn.sh
                     ./jenkins/build/mvn.sh mvn -B -DskipTests clean package
+                    chmod +x ./jenkins/build/build.sh
                     ./jenkins/build/build.sh
                 '''
             }
@@ -16,13 +17,19 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh './jenkins/test/mvn.sh mvn test'
+                sh '''
+                    chmod +x ./jenkins/test/mvn.sh
+                    ./jenkins/test/mvn.sh mvn test
+                '''
             }
         }
 
         stage('Push') {
             steps {
-                sh './jenkins/push/push.sh'
+                sh '''
+                    chmod +x ./jenkins/push/push.sh
+                    ./jenkins/push/push.sh
+                '''
             }
         }
 
