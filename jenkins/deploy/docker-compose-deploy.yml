@@ -1,0 +1,5 @@
+version: '3'
+services: 
+  maven:
+    image: "rdieleman/$IMAGE:$TAG"
+    container_name: feeler-backend-prod
