@@ -24,15 +24,6 @@ pipeline {
             }
         }
 
-        stage('Push') {
-            steps {
-                sh '''
-                    chmod +x ./jenkins/push/push.sh
-                    ./jenkins/push/push.sh
-                '''
-            }
-        }
-
         stage('Deploy') {
             steps {
                 sh 'docker-compose -f ./jenkins/deploy/docker-compose-deploy.yml up -d'
