@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Copy the new jar to the build location
-cp -f code/target/feeler-backend-0.0.1-SNAPSHOT-jar-with-dependencies.jarr jenkins/build/
+cp -f code/target/feeler-backend-0.0.1-SNAPSHOT-jar-with-dependencies.jar jenkins/build/
 
 echo "======================================="
 echo "======== Building Docker Image ========"
