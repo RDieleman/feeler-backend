@@ -20,7 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-@Profile("dev")
+@Profile({"dev", "prod"})
+
 public class BookDataSourceISBNdb extends BookDataSource {
     private final RestTemplate restTemplate;
     @Value("${ISBNdb.path}")
