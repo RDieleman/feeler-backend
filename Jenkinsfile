@@ -8,7 +8,7 @@ pipeline {
             steps {
                 sh '''
                     chmod +x ./jenkins/build/mvn.sh
-                    ./jenkins/build/mvn.sh mvn -B -DskipTests clean package
+                    ./jenkins/build/mvn.sh mvn -B -DskipTests clean package -Dactive.profile=prod
                     chmod +x ./jenkins/build/build.sh
                     ./jenkins/build/build.sh
                 '''
