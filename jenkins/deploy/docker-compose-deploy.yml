@@ -1,5 +1,7 @@
 version: '3'
 services: 
   maven:
+    ports:
+    - 8080:8080
     image: "$IMAGE:$BUILD_TAG"
     container_name: feeler-backend-production
