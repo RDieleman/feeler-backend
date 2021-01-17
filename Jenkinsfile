@@ -8,7 +8,7 @@ pipeline {
             steps {
                 sh '''
                     chmod +x ./jenkins/build/mvn.sh
-                    ./jenkins/build/mvn.sh mvn -B -DskipTests clean compile assembly:single
+                    ./jenkins/build/mvn.sh mvn -B -DskipTests clean package
                     chmod +x ./jenkins/build/build.sh
                     ./jenkins/build/build.sh
                 '''
