@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@CrossOrigin(origins = {"${api.cors.origin}"})
+@CrossOrigin(origins = {"*"})
 @RequestMapping(value = "/mood")
 @Api(tags = "Moods")
 public class MoodController {

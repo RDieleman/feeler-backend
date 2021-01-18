@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = {"${api.cors.origin}"})
+@CrossOrigin(origins = {"*"})
 @RequestMapping("/user")
 @Api(tags = "Users")
 public class UserController {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"${api.cors.origin}"})
+@CrossOrigin(origins = {"*"})
 @RequestMapping("/explore")
 @Api(tags = "Exploring")
 public class ExploreController {
