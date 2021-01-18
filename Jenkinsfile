@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh '''
                     chmod +x ./jenkins/test/mvn.sh
-                    ./jenkins/test/mvn.sh mvn test
+                    ./jenkins/test/mvn.sh mvn test -Dactive.profile=test
                 '''
             }
         }
