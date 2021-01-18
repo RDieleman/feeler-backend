@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("dev")
+@Profile({"dev", "test", "prod"})
 public class DataLoader implements ApplicationRunner {
     Logger logger = LoggerFactory.getLogger(DataLoader.class);
     IUserRepository userDataSource;
