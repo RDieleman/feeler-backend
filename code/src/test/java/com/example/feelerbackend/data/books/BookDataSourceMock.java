@@ -1,6 +1,5 @@
-package com.example.feelerbackend.data.books.implementations;
+package com.example.feelerbackend.data.books;
 
-import com.example.feelerbackend.data.books.BookDataSource;
 import com.example.feelerbackend.data.books.dao.BookDAO;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -10,10 +9,11 @@ import java.util.List;
 
 @Component
 @Profile("test")
-public class BookDataSourceMemory extends BookDataSource {
-
+public class BookDataSourceMock extends BookDataSource {
     @Override
     public BookDAO getBookByISBN(String ISBN) {
+        if(ISBN.equals("null")) return null;
+
         return generateBooks(1).remove(0);
     }
 
@@ -37,4 +37,5 @@ public class BookDataSourceMemory extends BookDataSource {
 
         return books;
     }
+
 }

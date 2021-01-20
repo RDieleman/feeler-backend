@@ -1,6 +1,7 @@
 package com.example.feelerbackend.domain.service;
 
 import com.example.feelerbackend.domain.model.Mood;
+import com.example.feelerbackend.web.api.exception.implementations.InvalidArgumentException;
 import com.example.feelerbackend.web.api.exception.implementations.InvalidMoodException;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class MoodService {
     }
 
     public String getSubjectFromMood(Mood mood){
+        if(mood == null) throw new InvalidArgumentException("mood");
+
         switch (mood){
             case angry:
                 return "biography biographies autobiography essay true-crime";

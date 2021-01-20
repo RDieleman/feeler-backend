@@ -7,6 +7,7 @@ import com.example.feelerbackend.domain.model.book.BookDTO;
 import com.example.feelerbackend.domain.model.book.GetExploreResultDTO;
 import com.example.feelerbackend.domain.util.mapper.IBookMapper;
 import com.example.feelerbackend.web.api.exception.implementations.BookNotFoundException;
+import com.example.feelerbackend.web.api.exception.implementations.InvalidArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ public class BookService {
     }
 
     public BookDTO getBookByISBN(String ISBN){
+        if(ISBN==null || ISBN.isBlank() || ISBN.isEmpty()) throw new InvalidArgumentException(ISBN);
         BookDAO dao = bookDataSource.getBookByISBN(ISBN);
         if(dao == null) throw new BookNotFoundException(ISBN);
         Book model = bookMapper.toModel(dao);

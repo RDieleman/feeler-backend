@@ -8,6 +8,8 @@ import com.example.feelerbackend.domain.model.bookshelf.item.Status;
 import com.example.feelerbackend.domain.util.mapper.IBookshelfMapper;
 import com.example.feelerbackend.web.api.exception.implementations.BookNotFoundException;
 import com.example.feelerbackend.web.api.exception.implementations.BookshelfNotFoundException;
+import com.example.feelerbackend.web.api.exception.implementations.InvalidArgumentException;
+import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class BookshelfService {
 
     public BookshelfDTO getBookshelf(GetBookshelfDTO dto) {
 
+        if(dto == null) throw new InvalidArgumentException("dto");
+
         BookshelfDAO dao = bookshelfDataSource.findById(dto.getBookshelfId())
                 .orElse(null);
 
@@ -34,6 +38,8 @@ public class BookshelfService {
     }
 
     public BookshelfDTO addBook(AddBookDTO dto) {
+        if(dto == null) throw new InvalidArgumentException("dto");
+
         BookshelfDAO dao = bookshelfDataSource.findById(dto.getBookshelfId())
                 .orElse(null);
 
@@ -53,6 +59,9 @@ public class BookshelfService {
     }
 
     public BookshelfDTO updateBook(UpdateBookDTO dto) {
+        if(dto == null) throw new InvalidArgumentException("dto");
+        if(dto.getStatus() == null) throw new InvalidArgumentException("status");
+
         BookshelfDAO dao = bookshelfDataSource.findById(dto.getBookshelfId())
                 .orElse(null);
 
@@ -71,6 +80,8 @@ public class BookshelfService {
     }
 
     public BookshelfDTO removeBook(RemoveBookDTO dto) {
+        if(dto == null) throw new InvalidArgumentException("dto");
+
         BookshelfDAO dao = bookshelfDataSource.findById(dto.getBookshelfId())
                 .orElse(null);
 
